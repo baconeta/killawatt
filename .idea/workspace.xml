@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ea1c762-8e76-4bd3-826c-45bdba856e59" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/2024-07-01_2024-07-07_PMzmBw9.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/csvuploader/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csvuploader/templates/upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/csvuploader/templates/upload.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csvuploader/templates/uploaded.html" beforeDir="false" afterPath="$PROJECT_DIR$/csvuploader/templates/show_data.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csvuploader/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/csvuploader/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/csvuploader/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/csvuploader/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/csvuploader/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/csvuploader/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +94,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1720594006153</updated>
-      <workItem from="1720594008220" duration="3375000" />
+      <workItem from="1720594008220" duration="5181000" />
     </task>
     <servers />
   </component>
