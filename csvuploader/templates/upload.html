@@ -3,13 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>CSV Uploader Tool - Upload</title>
+    {% load static %}
+    <script type="text/javascript" src="{% static 'jquery-3.7.1.js' %}"></script>
+    <script type="text/javascript" src="{% static 'jquery.formset.js' %}"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('#input_data table tbody tr').formset()
+        })
+    </script>
 </head>
 <body>
     <h1>Upload CSV File</h1>
-    <form method="post" enctype="multipart/form-data">
+    <form id="input_data" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ file_form.as_p }}
+
+        <table>
+            <tbody>
+                <thead>
+                    <tr class="header">
+                        <th> Name </th>
+                        <th> Rate Type </th>
+                        <th> Cost </th>
+                    </tr>
+                </thead>
+                {% for form in formset.forms %}
+                    <tr>
+                        <td>{{ form.name }}</td>
+                        <td>{{ form.rate_type }}</td>
+                        <td>{{ form.cost }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {{ formset.management_form }}
+
         <button type="submit">Upload</button>
+
     </form>
 </body>
 </html>

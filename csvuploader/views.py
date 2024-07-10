@@ -11,25 +11,44 @@ def home(request):
 
 def upload_file(request):
     if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
+        file_form = UploadFileForm(request.POST, request.FILES)
+        formset = UploadFileForm.PowerProviderEntryFormFormSet()
+
+        if file_form.is_valid() and formset.is_valid():
             file = request.FILES['file']
-            provider = form.cleaned_data['provider']
-            gst_inclusive = form.cleaned_data['includes_GST']
+            provider = file_form.cleaned_data['provider']
+            gst_inclusive = file_form.cleaned_data['includes_GST']
             data = pd.read_csv(file)
+
+            # Process formset data
+            entries = []
+            for form in formset:
+                if form.cleaned_data:
+                    entry = {
+                        'name': form.cleaned_data['name'],
+                        'rate_type': form.cleaned_data['rate_type'],
+                        'cost': form.cleaned_data['cost']
+                    }
+                    entries.append(entry)
 
             # Store the DataFrame in the session or pass it to the next function/page
             request.session['data'] = data.to_json()
             request.session['provider'] = provider
             request.session['gst_inclusive'] = gst_inclusive
+            request.session['entries'] = entries
         return redirect('show_data')
     else:
-        form = UploadFileForm(request.POST, request.FILES)
-    return render(request, 'upload.html', {'form': form})
+        file_form = UploadFileForm(request.POST, request.FILES)
+        formset = UploadFileForm.PowerProviderEntryFormFormSet()
+    return render(request, 'upload.html', {'file_form': file_form, 'formset': formset})
 
 
 def show_data(request):
     data_json = request.session.get('data')
+    provider = request.session.get('provider')
+    entries = request.session.get('entries')
+    gst_inclusive = request.session.get('includes_GST')
+
     if data_json:
         data = pd.read_json(StringIO(data_json))
 
