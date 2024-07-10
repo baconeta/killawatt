@@ -8,7 +8,7 @@
     <h1>Upload CSV File</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="file" name="power_file">
+        {{ form.as_p }}
         <button type="submit">Upload</button>
     </form>
 </body>

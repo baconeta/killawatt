@@ -1,5 +1,7 @@
-from django.shortcuts import render
-from django.core.files.storage import FileSystemStorage
+from io import StringIO
+
+from django.shortcuts import render, redirect
+from .forms import UploadFileForm
 import pandas as pd
 
 
@@ -8,17 +10,34 @@ def home(request):
 
 
 def upload_file(request):
-    if request.method == 'POST' and request.FILES['power_file']:
-        file = request.FILES['power_file']
-        fs = FileSystemStorage()
-        filename = fs.save(file.name, file)
-        uploaded_file_url = fs.url(filename)
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            file = request.FILES['file']
+            data = pd.read_csv(file)
+            # Store the DataFrame in the session or pass it to the next function/page
+            request.session['data'] = data.to_json()
+            return redirect('show_data')
+    else:
+        form = UploadFileForm()
+    return render(request, 'upload.html', {'form': form})
 
-        # Example: Read CSV file using pandas
-        df = pd.read_csv(fs.open(filename))  # This reads the CSV file
 
-        return render(request, 'uploaded.html', {
-            'uploaded_file_url': uploaded_file_url,
-            'data_frame': df.to_html(),  # Pass the dataframe as HTML to display in template
-        })
-    return render(request, 'upload.html')
+def show_data(request):
+    data_json = request.session.get('data')
+    if data_json:
+        data = pd.read_json(StringIO(data_json))
+
+        # Example manipulation: adding a column with prices for different providers
+        providers = {
+            'Provider A': 0.15,
+            'Provider B': 0.12,
+            'Provider C': 0.20
+        }
+
+        for provider, price in providers.items():
+            data[provider] = data['value'] * price
+
+        return render(request, 'show_data.html', {'tables': [data.to_html(classes='data', header=True)]})
+    else:
+        return redirect('upload_file')
