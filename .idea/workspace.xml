@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ea1c762-8e76-4bd3-826c-45bdba856e59" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csvuploader/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/csvuploader/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csvuploader/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/csvuploader/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="9ea1c762-8e76-4bd3-826c-45bdba856e59" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,7 +90,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1720594006153</updated>
-      <workItem from="1720594008220" duration="5181000" />
+      <workItem from="1720594008220" duration="5816000" />
     </task>
     <servers />
   </component>
