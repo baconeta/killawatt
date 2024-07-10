@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSV Uploader Tool - Uploaded</title>
+</head>
+<body>
+    <h1>Uploaded CSV File</h1>
+    <p>File uploaded successfully:</p>
+    <p><a href="{{ uploaded_file_url }}">Download file</a></p>
+
+    <h2>CSV Data:</h2>
+    {% if data_frame %}
+        {{ data_frame|safe }}
+    {% else %}
+        <p>No data available.</p>
+    {% endif %}
+</body>
+</html>
